@@ -6,20 +6,27 @@ import { db } from "@/lib/server/db";
  * Returns top N services (by popularity/rating in production)
  */
 async function listPublicServiceSlugs(limit: number = 100): Promise<string[]> {
-  const services = await db.service.findMany({
-    where: {
-      isActive: true,
-    },
-    select: {
-      slug: true,
-    },
-    orderBy: {
-      createdAt: "desc",
-    },
-    take: limit,
-  });
+  try {
+    const services = await db.service.findMany({
+      where: {
+        isActive: true,
+      },
+      select: {
+        slug: true,
+      },
+      orderBy: {
+        createdAt: "desc",
+      },
+      take: limit,
+    });
 
-  return services.map((s: { slug: string }) => s.slug);
+    return services.map((s: { slug: string }) => s.slug);
+  } catch (error) {
+    // Database may not be available during build or tables may not exist yet
+    // Return empty array to allow build to complete
+    console.warn("Failed to fetch services for sitemap:", error);
+    return [];
+  }
 }
 
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
