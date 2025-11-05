@@ -1,0 +1,10 @@
+---
+name: SEO & Content
+priority: 75
+scope:
+  include: ["app/(marketing)/**","app/(app)/services/**","app/**/opengraph-image.tsx"]
+---
+
+- Metadata per route, OG/Twitter images via dynamic `opengraph-image.tsx`.
+- Service slugs from `title` + id; prevent collisions.
+- Generate `/robots.txt` and `/sitemap.xml`; exclude orders, messages, account pages.

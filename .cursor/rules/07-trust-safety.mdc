@@ -1,0 +1,13 @@
+---
+name: Trust & Safety
+priority: 95
+alwaysApply: true
+---
+
+**Identity & reputation**
+- Display verified badges explicitly; show rating distributions and recent reviews.
+- Require ToS + marketplace rules acceptance on first payout.
+
+**Abuse**
+- Central `reportContent()` server action with reason codes.
+- Log moderation events with actor, target, reason, decision.

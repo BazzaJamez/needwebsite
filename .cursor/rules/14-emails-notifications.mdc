@@ -1,0 +1,10 @@
+---
+name: Emails & Notifications
+priority: 70
+scope:
+  include: ["emails/**","app/api/notifications/**"]
+---
+
+- Transactional first: order created, requirement requested, delivery, revision, completed, review reminder.
+- Templates in `emails/*` with consistent header/footer; text-only fallbacks required.
+- Respect user notification preferences; digest low-priority updates.

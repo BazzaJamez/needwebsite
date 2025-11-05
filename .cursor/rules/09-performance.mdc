@@ -1,0 +1,10 @@
+---
+name: Performance
+priority: 90
+scope:
+  include: ["app/**","components/**","next.config.*"]
+---
+
+- Target LCP < 2.5s on 4G; CLS < 0.1; INP < 200ms.
+- Use `next/image` with responsive sizes; prefetch hover/intention on internal links.
+- Bundle control: no heavy client libs in Server Components; dynamic import clients.

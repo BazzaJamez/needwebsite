@@ -1,0 +1,15 @@
+---
+name: Checkout & Escrow
+priority: 85
+scope:
+  include: ["app/(app)/checkout/**","app/api/checkout/**","lib/payments/**"]
+---
+
+**Flow**
+- Service → choose tier → options/add-ons → quote → address/notes → pay → order created in "in_escrow".
+- Split payment/escrow from order creation; idempotency keys for API.
+
+**Rules**
+- Never expose pricing logic to client; compute server-side and re-validate at submit.
+- Webhooks verify signatures; update Order status via single state machine.
+- Prices are integers in minor units; format at the edge only.

@@ -1,0 +1,19 @@
+---
+name: Domain Model
+priority: 90
+scope:
+  include: ["lib/**","db/**","app/api/**"]
+---
+
+**Core entities**
+- User {id, role: "buyer"|"seller", profile, reputation}
+- Service {id, sellerId, title, slug, description, basePrice, tags[], gallery[]}
+- Package {serviceId, tier: "basic"|"standard"|"premium", price, deliveryDays, features[]}
+- Order {id, buyerId, sellerId, serviceId, packageTier, status, escrowId, milestones[]}
+- MessageThread {id, participants[], lastMessageAt}; Message {id, threadId, senderId, body, attachments[]}
+- Review {id, orderId, rating 1–5, body, createdAt}
+- Dispute {id, orderId, status, reason, resolution}
+
+**Rules**
+- Validation at boundaries with Zod; DB types generated (Prisma recommended).
+- PII isolation: emails, addresses in a separate table or encrypted fields.

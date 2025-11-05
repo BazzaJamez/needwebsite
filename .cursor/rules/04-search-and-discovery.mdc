@@ -1,0 +1,14 @@
+---
+name: Search & Discovery
+priority: 85
+scope:
+  include: ["app/(marketing)/**","app/(app)/services/**","lib/search/**"]
+---
+
+**Search**
+- Query params: q, category, budget_min/max, delivery, rating_min, sort (relevance|rating|newest|price_asc).
+- Facets visible, collapsible on mobile. Persist filters in URL.
+
+**Cards**
+- ServiceCard shows: title, seller avatar+rating, price from, key tags, delivery chip.
+- Skeletons for loading; infinite scroll or "Load more" (no pagination numbers).

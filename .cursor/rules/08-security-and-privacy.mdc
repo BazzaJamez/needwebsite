@@ -1,0 +1,15 @@
+---
+name: Security & Privacy
+priority: 100
+alwaysApply: true
+---
+
+**Auth**
+- Use OAuth/passkey-first with session rotation; CSRF on all mutations.
+
+**Data**
+- Principle of least privilege; server actions prefer RSC over client calls.
+- Secrets in env only; never commit keys. Audit logs for admin actions.
+
+**Compliance**
+- Treat payment and PII as restricted scopes; apply data retention windows.

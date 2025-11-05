@@ -1,0 +1,24 @@
+---
+name: IA & Routing
+priority: 90
+scope:
+  include: ["app/**","next.config.*"]
+---
+
+**Route groups**
+- (marketing) public pages; (auth) sign-in/up; (app) buyer/seller app; (admin) ops.
+- Example:
+  - app/(marketing)/page.tsx
+  - app/(auth)/signin/page.tsx
+  - app/(app)/dashboard/page.tsx
+  - app/(app)/services/[slug]/page.tsx
+  - app/(app)/orders/[id]/page.tsx
+  - app/(app)/messages/[threadId]/page.tsx
+
+**Data fetching**
+- Server Components + fetch with `{ next: { revalidate: 60 } }` for public data.
+- Use Route Handlers in `app/api/**` for server logic, not client calls.
+
+**SEO**
+- Use `export const metadata` per route. Canonicals via baseUrl in `next.config`.
+- Sitemaps: route `app/sitemap.ts` plus dynamic entries from services and profiles.

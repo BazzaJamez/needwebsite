@@ -1,0 +1,23 @@
+---
+name: Design System
+priority: 95
+scope:
+  include: ["app/**","components/**","styles/**","lib/ui/**"]
+alwaysApply: true
+---
+
+**Tokens**
+- Define CSS variables in styles/tokens.css and mirror them in tailwind.config.{ts,js}.
+- Never hardcode colors/spacing; use tokens or Tailwind utilities.
+
+**Typography**
+- System font stack. Sizes follow 1.2 modular scale; line-height ≥ 1.4.
+
+**Components**
+- Use shadcn/ui primitives wrapped in components/ui/* (Button, Input, Card, Dialog, Sheet, Dropdown, DataTable).
+- Build composites in components/* (SearchBar, ServiceCard, SellerBadge, QuoteBuilder).
+- Variants via cva() or class-variance-authority. No ad-hoc class strings for state.
+
+**Accessibility**
+- All interactive components must use Radix where possible.
+- Focus rings: visible, offset 2. Minimum color contrast 4.5:1.

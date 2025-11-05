@@ -1,0 +1,10 @@
+---
+name: Analytics & Experiments
+priority: 70
+scope:
+  include: ["app/**","lib/analytics/**"]
+---
+
+- Track: search_started, service_viewed, add_to_quote, checkout_started, order_created, order_delivered, review_submitted.
+- Use a small `track(event, props)` wrapper; never call vendor SDKs from components directly.
+- Feature flags: `lib/flags.ts`; read once server-side and pass via props.

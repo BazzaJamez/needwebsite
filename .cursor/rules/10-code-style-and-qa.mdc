@@ -1,0 +1,16 @@
+---
+name: Code Style & QA
+priority: 100
+alwaysApply: true
+---
+
+**TypeScript**
+- "strict": true; forbid `any`; use `zod` at all inputs/outputs.
+
+**Testing**
+- Vitest + Testing Library; critical flows (auth, checkout, message send) must have tests.
+- E2E: Playwright for happy-path checkout, order delivery, review.
+
+**Structure**
+- `lib/server/*` for server-only helpers; `lib/shared/*` is isomorphic; `lib/client/*` for client-only.
+- Feature folders under `app/(app)/**` with co-located components and tests.

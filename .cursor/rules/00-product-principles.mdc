@@ -1,0 +1,20 @@
+---
+name: Product Principles
+priority: 100
+alwaysApply: true
+---
+
+**North star**
+- Feel obvious, calm, and respectful. Anticipate intent. Zero clutter.
+- Marketplace = trust first: clarity of scope, fair pricing, accurate timelines.
+
+**Design language**
+- Spacious, 8pt grid. Very few borders; rely on elevation, spacing, and typography.
+- Motion is subtle and purposeful (200–250ms). No surprise animations.
+
+**Content style**
+- Short, neutral, assistive. Imperatives > questions. No marketing fluff in core flows.
+
+**Platform**
+- Next.js App Router + TypeScript + Tailwind + shadcn/ui + Radix + TanStack Query.
+- Server Components by default; promote to Client only when interactive state is required.

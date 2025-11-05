@@ -1,0 +1,14 @@
+---
+name: Messaging & Collaboration
+priority: 80
+scope:
+  include: ["app/(app)/messages/**","lib/realtime/**","app/api/messages/**"]
+---
+
+**Threads**
+- 1:1 buyer↔seller. No group chats initially.
+- Features: typing, read receipts, attachments (images/pdf), quick templates.
+
+**Safety**
+- Auto-redact emails/phones in pre-order chats; allow post-order exchange.
+- Rate-limit message sends; virus scan uploads.

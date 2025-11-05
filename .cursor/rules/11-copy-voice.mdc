@@ -1,0 +1,10 @@
+---
+name: Copy & Voice
+priority: 70
+scope:
+  include: ["app/**","emails/**"]
+---
+
+- Tone: clear, neutral, supportive. Avoid jargon. Labels ≤ 3 words.
+- Error messages explain impact + next step: “Payment failed. Try again or use another card.”
+- Empty states are instructional and show the *next* action.
