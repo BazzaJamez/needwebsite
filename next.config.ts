@@ -34,9 +34,7 @@ const nextConfig: NextConfig = {
     return config;
   },
   // Explicitly exclude nodemailer from Edge Runtime bundles
-  experimental: {
-    serverComponentsExternalPackages: ["nodemailer"],
-  },
+  serverExternalPackages: ["nodemailer"],
 };
 
 export default nextConfig;

@@ -28,14 +28,14 @@ function toServiceSlug(title: string, id: string): string {
  */
 export async function PATCH(
   request: NextRequest,
-  { params }: { params: Promise<{ id: string }> | { id: string } }
+  { params }: { params: Promise<{ id: string }> }
 ) {
   try {
     // Require seller role
     const user = await requireRole("seller");
 
-    // Handle both Promise and direct params (Next.js compatibility)
-    const resolvedParams = await Promise.resolve(params);
+    // Resolve params (Next.js 16 params are async)
+    const resolvedParams = await params;
     const serviceId = resolvedParams.id;
 
     // Find the service and verify ownership
@@ -197,14 +197,14 @@ export async function PATCH(
  */
 export async function DELETE(
   request: NextRequest,
-  { params }: { params: Promise<{ id: string }> | { id: string } }
+  { params }: { params: Promise<{ id: string }> }
 ) {
   try {
     // Require seller role
     const user = await requireRole("seller");
 
-    // Handle both Promise and direct params (Next.js compatibility)
-    const resolvedParams = await Promise.resolve(params);
+    // Resolve params (Next.js 16 params are async)
+    const resolvedParams = await params;
     const serviceId = resolvedParams.id;
 
     // Find the service and verify ownership
