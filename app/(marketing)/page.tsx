@@ -11,6 +11,9 @@ import { CTA } from "@/components/marketing/CTA";
 
 export const revalidate = 60;
 
+// Force dynamic rendering to avoid database connection issues during build
+export const dynamic = 'force-dynamic';
+
 export const metadata: Metadata = {
   title: "Find top freelancers fast",
   description: "Hire trusted experts across design, development, and marketing. Connect with skilled professionals for your next project.",
