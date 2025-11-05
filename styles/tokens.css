@@ -1,0 +1,48 @@
+:root {
+  /* brand */
+  --color-accent: #ff6a00;          /* Ember (primary accent) */
+  --color-accent-600: #ff6a00;
+  --color-accent-700: #e65f00;
+  --color-accent-100: #fff1e6;
+
+  /* neutrals */
+  --color-bg: #0b0b0c;              /* dark text-on-light guard (used for text) */
+  --color-surface: #ffffff;         /* base surface */
+  --color-elev: #fcfcfd;            /* elevated cards */
+  --color-muted: #6b7280;           /* secondary text */
+  --color-border: #e5e7eb;          /* lines/dividers */
+
+  /* feedback (no green) */
+  --color-success: #0ea5e9;         /* cyan */
+  --color-warning: #f59e0b;         /* amber */
+  --color-danger:  #ef4444;         /* red */
+  --color-info:    #3b82f6;         /* blue */
+
+  /* typography */
+  --font-sans: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Inter, "Helvetica Neue", Arial, "Noto Sans", "Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol";
+  --font-mono: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+
+  /* type scale (1.20 modular) */
+  --text-2xl: 3.583rem;  /* hero */
+  --text-xl:  2.986rem;
+  --text-lg:  2.488rem;
+  --text-h1:  2.074rem;
+  --text-h2:  1.728rem;
+  --text-h3:  1.44rem;
+  --text-h4:  1.2rem;
+  --text-base:1rem;
+  --text-sm:  0.889rem;
+  --text-xs:  0.79rem;
+
+  /* spacing / radius / shadow */
+  --space-1: 4px;  --space-2: 8px; --space-3: 12px; --space-4: 16px;
+  --space-5: 24px; --space-6: 32px; --space-7: 40px; --space-8: 56px; --space-9: 80px;
+  --radius-sm: .5rem; --radius-md: .75rem; --radius-lg: 1rem; --radius-xl: 1.25rem; --radius-2xl: 1.75rem;
+  --shadow-1: 0 1px 2px rgba(0,0,0,.08), 0 2px 8px rgba(0,0,0,.06);
+  --shadow-2: 0 2px 6px rgba(0,0,0,.10), 0 8px 24px rgba(0,0,0,.08);
+
+  /* motion */
+  --ease-standard: cubic-bezier(0.2, 0.8, 0.2, 1);
+  --dur-fast: 150ms; --dur-base: 200ms; --dur-slow: 300ms;
+}
+
