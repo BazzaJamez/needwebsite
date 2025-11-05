@@ -48,18 +48,6 @@ export default async function ThreadPage({ params }: Props) {
           createdAt: "asc",
         },
       },
-      order: {
-        select: {
-          id: true,
-          status: true,
-          service: {
-            select: {
-              title: true,
-              slug: true,
-            },
-          },
-        },
-      },
     },
   });
 
@@ -83,8 +71,22 @@ export default async function ThreadPage({ params }: Props) {
     );
   }
 
-  // Get other participant (not current user)
   const otherParticipant = thread.participants.find((p) => p.userId !== user.id)?.user;
+  const order = thread.orderId
+    ? await db.order.findUnique({
+        where: { id: thread.orderId },
+        select: {
+          id: true,
+          status: true,
+          service: {
+            select: {
+              title: true,
+              slug: true,
+            },
+          },
+        },
+      })
+    : null;
 
   return (
     <div className="mx-auto flex h-[calc(100vh-80px)] max-w-4xl flex-col px-6 py-8">
@@ -93,9 +95,9 @@ export default async function ThreadPage({ params }: Props) {
         <h1 className="text-h2">
           {otherParticipant?.name || "Unknown User"}
         </h1>
-        {thread.order && (
+        {order && (
           <p className="text-sm text-muted">
-            Order: {thread.order.service.title}
+            Order: {order.service.title}
           </p>
         )}
       </div>

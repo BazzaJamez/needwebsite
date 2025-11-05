@@ -67,7 +67,7 @@ export async function payOrder(
     };
   } catch (error) {
     if (error instanceof z.ZodError) {
-      return { success: false, error: error.errors[0]?.message || "Validation failed" };
+      return { success: false, error: error.issues[0]?.message || "Validation failed" };
     }
     return { success: false, error: "Failed to process payment" };
   }
@@ -106,7 +106,7 @@ export async function startOrder(
     };
   } catch (error) {
     if (error instanceof z.ZodError) {
-      return { success: false, error: error.errors[0]?.message || "Validation failed" };
+      return { success: false, error: error.issues[0]?.message || "Validation failed" };
     }
     return { success: false, error: "Failed to start order" };
   }
@@ -159,7 +159,7 @@ export async function deliverOrder(
     };
   } catch (error) {
     if (error instanceof z.ZodError) {
-      return { success: false, error: error.errors[0]?.message || "Validation failed" };
+      return { success: false, error: error.issues[0]?.message || "Validation failed" };
     }
     return { success: false, error: "Failed to submit delivery" };
   }
@@ -205,7 +205,7 @@ export async function requestRevision(
     };
   } catch (error) {
     if (error instanceof z.ZodError) {
-      return { success: false, error: error.errors[0]?.message || "Validation failed" };
+      return { success: false, error: error.issues[0]?.message || "Validation failed" };
     }
     return { success: false, error: "Failed to request revision" };
   }
@@ -253,7 +253,7 @@ export async function completeOrder(
     };
   } catch (error) {
     if (error instanceof z.ZodError) {
-      return { success: false, error: error.errors[0]?.message || "Validation failed" };
+      return { success: false, error: error.issues[0]?.message || "Validation failed" };
     }
     return { success: false, error: "Failed to complete order" };
   }
@@ -296,7 +296,7 @@ export async function cancelOrder(
     };
   } catch (error) {
     if (error instanceof z.ZodError) {
-      return { success: false, error: error.errors[0]?.message || "Validation failed" };
+      return { success: false, error: error.issues[0]?.message || "Validation failed" };
     }
     return { success: false, error: "Failed to cancel order" };
   }
@@ -347,7 +347,7 @@ export async function openDispute(
     };
   } catch (error) {
     if (error instanceof z.ZodError) {
-      return { success: false, error: error.errors[0]?.message || "Validation failed" };
+      return { success: false, error: error.issues[0]?.message || "Validation failed" };
     }
     return { success: false, error: "Failed to open dispute" };
   }

@@ -28,9 +28,7 @@ const statusChip = cva(
 
 export interface StatusChipProps
   extends React.HTMLAttributes<HTMLSpanElement>,
-    VariantProps<typeof statusChip> {
-  status: string;
-}
+    VariantProps<typeof statusChip> {}
 
 /**
  * Status chip component for order/service statuses
@@ -42,7 +40,7 @@ export function StatusChip({
   ...props
 }: StatusChipProps) {
   // Normalize status string to match enum values
-  const normalizedStatus = status.toLowerCase().replace(/-/g, "_") as
+  const normalizedStatus = (status || "draft").toLowerCase().replace(/-/g, "_") as
     | "draft"
     | "awaiting_payment"
     | "in_escrow"
@@ -56,13 +54,10 @@ export function StatusChip({
     | "resolved_partial"
     | "resolved_upheld";
 
-  const displayStatus =
-    normalizedStatus in statusChip.variants.status
-      ? normalizedStatus
-      : "draft";
+  const displayStatus = normalizedStatus;
 
   // Format display text (convert snake_case to Title Case)
-  const displayText = status
+  const displayText = (status || "draft")
     .split("_")
     .map((word) => word.charAt(0).toUpperCase() + word.slice(1))
     .join(" ");

@@ -3,7 +3,7 @@
 import { revalidatePath } from "next/cache";
 import { z } from "zod";
 import { MessageCreate, MessageThreadCreate } from "@/lib/shared/validation";
-import { getCurrentUser } from "@/lib/server/auth";
+import { getCurrentUserFull } from "@/lib/server/auth";
 import { db } from "@/lib/server/db";
 
 /**
@@ -27,7 +27,7 @@ function redactPII(text: string): string {
  */
 export async function sendMessage(input: z.infer<typeof MessageCreate>) {
   try {
-    const user = await getCurrentUser();
+    const user = await getCurrentUserFull();
     if (!user) {
       return { success: false as const, error: "Unauthorized" };
     }
@@ -43,7 +43,6 @@ export async function sendMessage(input: z.infer<typeof MessageCreate>) {
             user: true,
           },
         },
-        order: true,
       },
     });
 
@@ -104,7 +103,7 @@ export async function sendMessage(input: z.infer<typeof MessageCreate>) {
     if (error instanceof z.ZodError) {
       return {
         success: false as const,
-        error: error.errors[0]?.message || "Validation failed",
+        error: error.issues[0]?.message || "Validation failed",
       };
     }
     return { success: false as const, error: "Failed to send message" };
@@ -118,7 +117,7 @@ export async function createThread(
   input: z.infer<typeof MessageThreadCreate>
 ) {
   try {
-    const user = await getCurrentUser();
+    const user = await getCurrentUserFull();
     if (!user) {
       return { success: false as const, error: "Unauthorized" };
     }
@@ -175,7 +174,7 @@ export async function createThread(
     if (error instanceof z.ZodError) {
       return {
         success: false as const,
-        error: error.errors[0]?.message || "Validation failed",
+        error: error.issues[0]?.message || "Validation failed",
       };
     }
     return { success: false as const, error: "Failed to create thread" };

@@ -1,6 +1,10 @@
 import Link from "next/link";
+import { Suspense } from "react";
 import { HeroSearch } from "@/components/shared/HeroSearch";
 import { Button } from "@/components/ui/button";
+
+// Force dynamic rendering to avoid static generation issues
+export const dynamic = 'force-dynamic';
 
 export default function NotFound() {
   return (
@@ -12,7 +16,9 @@ export default function NotFound() {
         </p>
         
         <div className="mb-8">
-          <HeroSearch />
+          <Suspense fallback={<div>Loading search...</div>}>
+            <HeroSearch />
+          </Suspense>
         </div>
         
         <div className="flex flex-col items-center justify-center gap-4 sm:flex-row">

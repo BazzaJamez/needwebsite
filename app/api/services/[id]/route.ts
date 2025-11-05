@@ -10,6 +10,7 @@ import {
   NotFoundError,
   ForbiddenError,
 } from "@/lib/errors";
+import { PackageTier } from "@prisma/client";
 
 type Props = {
   params: Promise<{ id: string }>;
@@ -72,7 +73,7 @@ export async function PATCH(request: NextRequest, { params }: Props) {
       packages?: {
         deleteMany: {};
         create: Array<{
-          tier: string;
+          tier: PackageTier;
           priceMinor: number;
           deliveryDays: number;
           revisions: number;
@@ -126,7 +127,7 @@ export async function PATCH(request: NextRequest, { params }: Props) {
       updateData.packages = {
         deleteMany: {}, // Delete all existing packages
         create: validated.packages.map((pkg) => ({
-          tier: pkg.tier,
+          tier: pkg.tier as PackageTier,
           priceMinor: pkg.priceMinor,
           deliveryDays: pkg.deliveryDays,
           revisions: pkg.revisions,

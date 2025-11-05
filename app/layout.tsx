@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { Suspense } from "react";
 import "./globals.css";
 import { Providers } from "@/components/providers";
 import { Analytics } from "@/components/analytics/Analytics";
@@ -21,7 +22,9 @@ export default function RootLayout({
     <html lang="en">
       <body className="antialiased">
         <Providers flags={flags}>
-          <Analytics />
+          <Suspense fallback={null}>
+            <Analytics />
+          </Suspense>
           {children}
         </Providers>
       </body>

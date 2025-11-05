@@ -2,5 +2,8 @@
     "projectName": "Freelancer Marketplace",
     "rulesPath": ".cursor/rules",
     "docsPath": "docs",
-    "autoSave": true
+    "autoSave": true,
+    "terminal": {
+        "shell": "/bin/bash"
+    }
 }

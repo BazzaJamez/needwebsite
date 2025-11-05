@@ -227,8 +227,8 @@ export async function POST(request: NextRequest) {
         status: "awaiting_payment",
         amountMinor: totalAmount,
         currency: "USD", // Default currency
-        requirements: validated.requirements || null,
-        attachments: null, // Can be added later
+        requirements: validated.requirements || undefined,
+        attachments: undefined, // Can be added later
       },
       include: {
         service: {
@@ -266,7 +266,7 @@ export async function POST(request: NextRequest) {
     console.error("Failed to create order:", error);
     if (error instanceof z.ZodError) {
       return NextResponse.json(
-        { error: "Validation failed", details: error.errors },
+        { error: "Validation failed", details: error.issues },
         { status: 400 }
       );
     }

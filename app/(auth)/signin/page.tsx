@@ -6,6 +6,9 @@ import { useRouter, useSearchParams } from "next/navigation";
 import { Button } from "@/components/ui/button";
 import Link from "next/link";
 
+// Force dynamic rendering for auth pages
+export const dynamic = 'force-dynamic';
+
 export default function SignInPage() {
   const { data: session, status } = useSession();
   const router = useRouter();

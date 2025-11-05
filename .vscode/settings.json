@@ -1,0 +1,20 @@
+{
+  "terminal.integrated.profiles.linux": {
+    "bash": {
+      "path": "/bin/bash"
+    }
+  },
+  "terminal.integrated.defaultProfile.linux": "bash",
+  "terminal.integrated.profiles.windows": {
+    "WSL": {
+      "path": "C:\\Windows\\System32\\wsl.exe",
+      "args": []
+    },
+    "PowerShell": {
+      "path": "C:\\Windows\\System32\\WindowsPowerShell\\v1.0\\powershell.exe",
+      "args": []
+    }
+  },
+  "terminal.integrated.defaultProfile.windows": "WSL"
+}
+

@@ -6,9 +6,16 @@ import { db } from "@/lib/server/db";
 import { getPackageByServiceAndTier, getServiceById } from "@/lib/server/services";
 import Stripe from "stripe";
 
-const stripe = new Stripe(process.env.STRIPE_SECRET_KEY!, {
-  apiVersion: "2024-12-18.acacia",
-});
+let stripe: Stripe | null = null;
+
+function getStripe() {
+  if (!stripe && process.env.STRIPE_SECRET_KEY) {
+    stripe = new Stripe(process.env.STRIPE_SECRET_KEY, {
+      apiVersion: "2025-02-24.acacia",
+    });
+  }
+  return stripe;
+}
 
 // Checkout request schema (client sends this)
 const CheckoutRequest = z.object({
@@ -99,7 +106,7 @@ export async function POST(request: NextRequest) {
 
       if (existingOrder) {
         // Return existing order's payment intent
-        const paymentIntent = await stripe.paymentIntents.retrieve(
+        const paymentIntent = await getStripe()!.paymentIntents.retrieve(
           existingOrder.escrowId || ""
         );
         return NextResponse.json({
@@ -119,13 +126,13 @@ export async function POST(request: NextRequest) {
         status: "awaiting_payment",
         amountMinor: totalAmount,
         currency: validated.currency,
-        requirements: validated.requirements || null,
+        requirements: validated.requirements || undefined,
         attachments: [],
       },
     });
 
     // Create Stripe PaymentIntent
-    const paymentIntent = await stripe.paymentIntents.create(
+    const paymentIntent = await getStripe()!.paymentIntents.create(
       {
         amount: totalAmount,
         currency: validated.currency.toLowerCase(),
@@ -164,7 +171,7 @@ export async function POST(request: NextRequest) {
 
     if (error instanceof z.ZodError) {
       return NextResponse.json(
-        { error: "Invalid request", details: error.errors },
+        { error: "Invalid request", details: error.issues },
         { status: 400 }
       );
     }

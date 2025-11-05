@@ -18,9 +18,9 @@ const nextConfig: NextConfig = {
       // Add other image domains as needed
     ],
   },
-  webpack: (config, { isServer, edge }) => {
+  webpack: (config, { isServer }) => {
     // For Edge Runtime (middleware), mark nodemailer and related modules as external
-    if (edge) {
+    if (!isServer) {
       config.resolve.fallback = {
         ...config.resolve.fallback,
         stream: false,
@@ -30,7 +30,7 @@ const nextConfig: NextConfig = {
         tls: false,
       };
     }
-    
+
     return config;
   },
   // Explicitly exclude nodemailer from Edge Runtime bundles

@@ -1,6 +1,10 @@
 import { Metadata } from "next";
 import Link from "next/link";
 import { requireAuth } from "@/lib/server/auth";
+
+// Force dynamic rendering for authenticated pages
+export const dynamic = 'force-dynamic';
+import { OrderStatus } from "@prisma/client";
 import {
   getDashboardSummary,
   getDashboardOrders,
@@ -203,7 +207,7 @@ export default async function DashboardPage() {
                           </div>
                         </td>
                         <td className="py-3">
-                          <StatusChip status={order.status} />
+                          <StatusChip status={order.status as OrderStatus} />
                         </td>
                         <td className="py-3 text-right tabular-nums font-medium">
                           {formatCurrency(order.amountMinor, order.currency)}

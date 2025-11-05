@@ -29,6 +29,7 @@ const customAdapter: Adapter = {
         avatarUrl: user.image || null,
         role: "buyer", // Set default role
         emailVerified: user.emailVerified || null,
+        languages: [], // Empty array for languages
         reputation: {
           create: {
             ratingAvg: 0,
@@ -125,7 +126,7 @@ const customAdapter: Adapter = {
         token_type: account.token_type,
         scope: account.scope,
         id_token: account.id_token,
-        session_state: account.session_state,
+        session_state: account.session_state as string | null,
       },
     });
   },

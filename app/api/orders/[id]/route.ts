@@ -333,7 +333,7 @@ export async function PATCH(request: NextRequest, { params }: Props) {
     console.error("Failed to update order:", error);
     if (error instanceof z.ZodError) {
       return NextResponse.json(
-        { error: "Validation failed", details: error.errors },
+        { error: "Validation failed", details: error.issues },
         { status: 400 }
       );
     }
