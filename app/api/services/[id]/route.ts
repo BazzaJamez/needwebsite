@@ -11,6 +11,10 @@ import {
   ForbiddenError,
 } from "@/lib/errors";
 
+type Props = {
+  params: Promise<{ id: string }>;
+};
+
 /**
  * Generate service slug from title and ID
  */
@@ -26,10 +30,7 @@ function toServiceSlug(title: string, id: string): string {
 /**
  * PATCH /api/services/[id] - Update service (seller only)
  */
-export async function PATCH(
-  request: NextRequest,
-  { params }: { params: Promise<{ id: string }> }
-) {
+export async function PATCH(request: NextRequest, { params }: Props) {
   try {
     // Require seller role
     const user = await requireRole("seller");
@@ -195,10 +196,7 @@ export async function PATCH(
 /**
  * DELETE /api/services/[id] - Soft delete service (seller only)
  */
-export async function DELETE(
-  request: NextRequest,
-  { params }: { params: Promise<{ id: string }> }
-) {
+export async function DELETE(request: NextRequest, { params }: Props) {
   try {
     // Require seller role
     const user = await requireRole("seller");
